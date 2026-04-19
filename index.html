@@ -39,10 +39,10 @@
       radial-gradient(ellipse at 50% 50%, #c8b99a 0%, #b8a882 100%);
     color: var(--ink);
     font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 19px;
+    font-size: clamp(18px, 2.2vw, 22px);
     line-height: 1.9;
     font-weight: 400;
-    max-width: 520px;
+    max-width: 720px;
     margin: 0 auto;
     min-height: 100vh;
     position: relative;
@@ -63,7 +63,7 @@
   }
 
   .document {
-    padding: 56px 36px 80px;
+    padding: clamp(36px, 6vw, 80px) clamp(24px, 8vw, 100px) clamp(60px, 8vw, 100px);
     animation: fadeIn 1.2s ease both;
   }
 
@@ -80,7 +80,7 @@
 
   .campaign-label {
     font-family: 'Crimson Pro', serif;
-    font-size: 11px;
+    font-size: clamp(12px, 1.4vw, 15px);
     letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--ink-dim);
@@ -90,7 +90,7 @@
 
   .title {
     font-family: 'IM Fell English', serif;
-    font-size: 30px;
+    font-size: clamp(26px, 4vw, 42px);
     font-weight: normal;
     color: var(--ink);
     line-height: 1.2;
@@ -100,7 +100,7 @@
   .subtitle {
     font-family: 'Crimson Pro', serif;
     font-style: italic;
-    font-size: 15px;
+    font-size: clamp(14px, 1.8vw, 18px);
     color: var(--ink-dim);
     letter-spacing: 0.06em;
   }
@@ -178,7 +178,7 @@
   }
 
   .section-time {
-    font-size: 11px;
+    font-size: clamp(12px, 1.4vw, 15px);
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--accent-dim);
@@ -243,7 +243,7 @@
 
   .signature-name {
     font-family: 'Sacramento', cursive;
-    font-size: 42px;
+    font-size: clamp(38px, 5vw, 56px);
     color: var(--ink-mid);
     line-height: 1;
     margin-bottom: 6px;
@@ -267,7 +267,7 @@
   }
 
   .footer-text {
-    font-size: 11px;
+    font-size: clamp(12px, 1.4vw, 15px);
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--ink-faint);
