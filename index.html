@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Observações — Dia Um | A Maldição de Strahd</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --paper: #e8dfc8;
+    --paper-dark: #d9ceB4;
+    --paper-shadow: #c4b89a;
+    --ink: #1e1a14;
+    --ink-mid: #3d3528;
+    --ink-dim: #6b5e45;
+    --ink-faint: #a8997e;
+    --accent: #6b3a2a;
+    --accent-dim: #8c5a3a;
+    --rule: #b8a880;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    background: #1a1612;
+  }
+
+  body {
+    background-color: var(--paper);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse at 0% 0%, #d4c8a8 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, #cfc3a3 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, #e8dfc8 0%, #ddd0b0 100%);
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.9;
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Aged edges */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(100,80,40,0.12) 0%, transparent 4%),
+      linear-gradient(to left, rgba(100,80,40,0.12) 0%, transparent 4%),
+      linear-gradient(to bottom, rgba(80,60,30,0.1) 0%, transparent 6%),
+      linear-gradient(to top, rgba(80,60,30,0.1) 0%, transparent 6%);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .document {
+    padding: 56px 36px 80px;
+    animation: fadeIn 1.2s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+
+  .campaign-label {
+    font-family: 'Crimson Pro', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  .title {
+    font-family: 'IM Fell English', serif;
+    font-size: 30px;
+    font-weight: normal;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* Rules */
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 32px 0;
+  }
+
+  .rule-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rule), transparent);
+  }
+
+  .rule-glyph {
+    color: var(--accent-dim);
+    font-size: 13px;
+    font-family: 'IM Fell English', serif;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .rule-heavy {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 44px 0;
+  }
+
+  .rule-heavy-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    opacity: 0.6;
+  }
+
+  .rule-heavy-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--ink-faint);
+    flex-shrink: 0;
+  }
+
+  /* Warning */
+  .warning {
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    margin-bottom: 40px;
+    background: rgba(107, 58, 42, 0.06);
+  }
+
+  .warning p {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .warning span {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section-time {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 14px;
+    display: block;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  p {
+    margin-bottom: 1.15em;
+    color: var(--ink);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Analytical aside */
+  .note {
+    border-left: 2px solid var(--paper-shadow);
+    padding-left: 16px;
+    margin: 18px 0;
+    color: var(--ink-dim);
+    font-size: 17px;
+    font-style: italic;
+  }
+
+  /* Lyrical moments */
+  .lyric {
+    color: var(--ink-mid);
+    font-style: italic;
+  }
+
+  /* Images */
+  .sketch {
+    width: 100%;
+    display: block;
+    margin: 32px 0;
+    mix-blend-mode: multiply;
+    opacity: 0.88;
+    border: none;
+  }
+
+  .sketch-caption {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: -20px;
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  /* Signature */
+  .signature {
+    margin-top: 56px;
+    text-align: right;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .signature-name {
+    font-family: 'Sacramento', cursive;
+    font-size: 42px;
+    color: var(--ink-mid);
+    line-height: 1;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .signature-note {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    text-align: center;
+    padding-top: 18px;
+    border-top: 1px solid var(--paper-shadow);
+  }
+
+  .footer-text {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+</style>
+</head>
+<body>
+
+<div class="document">
+
+  <header class="header">
+    <span class="campaign-label">A Maldição de Strahd &nbsp;·&nbsp; Capítulo II &nbsp;·&nbsp; Parte I</span>
+    <h1 class="title">Observações</h1>
+    <p class="subtitle">O Festival do Sol Ardente &nbsp;·&nbsp; Dia Um</p>
+  </header>
+
+  <div class="warning">
+    <p><span>Redigido por E.V.</span> Para fins de arquivo pessoal. Não para entrega.</p>
+  </div>
+
+  <div class="rule">
+    <div class="rule-line"></div>
+    <span class="rule-glyph">✦</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <div class="section">
+    <span class="section-time">Manhã — Praça Central</span>
+
+    <p>Três forasteiros. Chegaram à praça pela manhã como chegam todos os que não são daqui: olhando demais para cima.</p>
+
+    <p>O elfo tocou a primeira pedra pintada às 9h da manhã, aproximadamente. Mercador de nome desconhecido, estatura mediana, tendência a gesticular ao mentir. Os ovos de dragão eram pedras comuns pintadas de vermelho. O elfo tocou uma. A tinta sumiu. O mercador xingou em dois idiomas. Os três foram embora sem pressa, o que é, anotei, uma forma de poder.</p>
+
+    <p>O feiticeiro ria enquanto andava.</p>
+  </div>
+
+  <img class="sketch" src="imagens/trio_na_praca.png" alt="Os três na praça">
+  <p class="sketch-caption">observação — manhã, praça central</p>
+
+  <div class="rule">
+    <div class="rule-line"></div>
+    <span class="rule-glyph">·</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <div class="section">
+    <p>Mais adiante: pedras pintadas. O elfo de costas, mão aberta. A tinta sumindo onde ele tocou. O mercador recuando com os braços levantados. Não era agressão. Era algo mais perturbador. Era correção.</p>
+
+    <div class="note">Ele não destrói. Ele revela. Anoto isso como distinção relevante.</div>
+  </div>
+
+  <img class="sketch" src="imagens/akkar_mercador.png" alt="Akkar e o mercador">
+  <p class="sketch-caption">observação — o elfo e o mercador</p>
+
+  <div class="rule">
+    <div class="rule-line"></div>
+    <span class="rule-glyph">·</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <div class="section">
+    <span class="section-time">Manhã — Barraca da Vistani</span>
+
+    <p>A barraca da Vistani chamada Zora fica entre a barraca de especiarias e o homem que vende máscaras de vime. Ela é boa no que faz. Os itens sem valor ficam na frente. Os que importam ficam atrás, mal iluminados, porque Zora sabe distinguir quem sabe ver do resto, e não desperdiça o que é bom com quem não merece.</p>
+
+    <p>O feiticeiro levou três minutos para perceber que estava olhando para o lugar errado. Depois disso a negociação durou quarenta minutos. Anotei os itens adquiridos: uma bússola de alma, um manto de névoa, um espelho de memória.</p>
+
+    <p>Zora sorriu quando eles foram embora. O tipo de sorriso de quem vendeu exatamente o que queria vender.</p>
+  </div>
+
+  <div class="rule">
+    <div class="rule-line"></div>
+    <span class="rule-glyph">·</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <div class="section">
+    <span class="section-time">Tarde — Pátio dos Cocheiros</span>
+
+    <p>Teodor Szabo. Cocheiro. Trinta e poucos anos, olhos fundos, cachimbo. O amigo dele, Bogdan Moritz, foi levado para a estrada de Krezk semanas atrás. O cavalo voltou.</p>
+
+    <p>Eles arrombaram o quarto do Bogdan. Encontraram o diário. Não ouvi o que disseram entre si depois de ler, estava longe demais. Vi a cara do elfo quando saiu.</p>
+
+    <div class="note">Tem certas expressões que não precisam de legenda.</div>
+
+    <p>Teodor aceitou levar o grupo para Krezk. Isso resolvia um problema logístico que eu estava para reportar como obstáculo. Não sei se ainda é relevante.</p>
+  </div>
+
+  <div class="rule-heavy">
+    <div class="rule-heavy-line"></div>
+    <div class="rule-heavy-dot"></div>
+    <div class="rule-heavy-dot"></div>
+    <div class="rule-heavy-dot"></div>
+    <div class="rule-heavy-line"></div>
+  </div>
+
+  <div class="section">
+    <span class="section-time">Noite — Ruas de Vallaki</span>
+
+    <p>À noite, a caminho da Igreja de Santo Andral, o feiticeiro quase teve a carteira roubada por um adolescente — Caio Pinto, acho, ou Caio algo, o apelido que os outros meninos usavam era menos gentil que isso. Má escolha de alvo. O feiticeiro tem reflexos.</p>
+
+    <p>O menino falou sobre barulhos no Pátio à noite antes de ser solto. O feiticeiro o deixou ir com uma expressão que eu registraria como ameaçadora, mas era mais cansada do que ameaçadora. Como alguém que já viu gente ruim demais para se impressionar com um adolescente.</p>
+  </div>
+
+  <img class="sketch" src="imagens/ignis_caio.png" alt="Ignis e o ladrão">
+  <p class="sketch-caption">observação — o feiticeiro e o menino</p>
+
+  <div class="rule">
+    <div class="rule-line"></div>
+    <span class="rule-glyph">·</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <div class="section">
+    <span class="section-time">Noite — Telhados</span>
+
+    <p>Fui descuidado.</p>
+
+    <p>Estava seguindo o grupo pela Rua dos Ferreiros quando o elfo e o druida pararam. Não sei quando me viram. Retroativamente: no cruzamento com a rua do barbeiro, provavelmente. Um erro de posicionamento que não cometeria em condições normais.</p>
+
+    <p>A perseguição durou oito minutos. O druida lançou raízes num telhado. <span class="lyric">Raízes, num telhado, à noite, em Vallaki.</span> Anoto isso e não sei ao certo o que fazer com essa informação além de anotá-la. Ele podia ter me machucado. Não machucou. Acho que isso também é uma informação.</p>
+
+    <p>O outro me alcançou em seguida.</p>
+  </div>
+
+  <img class="sketch" src="imagens/philion_telhados.png" alt="Phílon nos telhados">
+  <p class="sketch-caption">observação — o rapaz-carneiro, telhados, rua dos ferreiros</p>
+
+  <div class="rule-heavy">
+    <div class="rule-heavy-line"></div>
+    <div class="rule-heavy-dot"></div>
+    <div class="rule-heavy-dot"></div>
+    <div class="rule-heavy-dot"></div>
+    <div class="rule-heavy-line"></div>
+  </div>
+
+  <div class="section">
+
+    <p>Aqui o relatório para porque o que aconteceu a seguir não é material de relatório.</p>
+
+    <p>O ser com aparência de rapaz — chifres discretos sob o chapéu, algo nos pés que o tecido do alfaiate escondia mal na minha distância — me segurou pelo rosto com as duas mãos. Não como interrogatório. Não como ameaça. <span class="lyric">Como quem precisa ter certeza de que o que está na frente é real antes de decidir qualquer coisa.</span></p>
+
+    <p>Olhei de volta porque não havia outra direção para olhar.</p>
+
+    <p>Não sei descrever o que aconteceu nos segundos seguintes de forma que faça sentido num documento. Tentei três vezes. As três versões soavam falsas. A versão honesta é esta: <span class="lyric">me senti visto de dentro para fora, e não soube se isso era bom ou ruim, e por um momento não me importei em saber.</span></p>
+
+    <p>Disse a verdade porque estava exausto demais para não dizer.</p>
+
+    <div class="note">Ana tem nove anos. Está no castelo há três meses. Uma carta por semana com instruções. Se não cumpro, a carta seguinte chega com uma prova do que ela ainda era até aquele momento.</div>
+
+    <p>Eles ouviram. Deixaram eu enviar o bilhete desta noite. Combinamos de nos encontrar de novo.</p>
+
+    <p>Fui embora pela Rua dos Curtidores e parei na esquina porque precisava parar.</p>
+
+  </div>
+
+  <div class="rule">
+    <div class="rule-line"></div>
+    <span class="rule-glyph">·</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <div class="section">
+    <span class="section-time">Noite — Igreja de Santo Andral</span>
+
+    <p>Chegaram à Igreja de Santo Andral por volta das 22h. O Padre Lucian abriu a porta e ficou olhando para o rapaz-carneiro — não sei como chamá-lo de outra forma, não sei se ele saberia também — por um tempo que era longo demais para ser educado e curto demais para ser rude. Algo no meio. Reconhecimento, talvez. Ou a sombra dele.</p>
+
+    <p>Eu estava do outro lado da rua.</p>
+
+    <p><span class="lyric">A névoa atrás deles. As velas dentro. O padre na soleira com a cara de quem esperou a vida inteira por uma pergunta e agora não lembra qual era.</span></p>
+
+    <p>Entrei no meu quarto às 23h e tentei escrever o relatório para entrega.</p>
+
+    <p>Escrevi isso em vez disso.</p>
+
+    <p>Não sei para quem. Talvez para Ana, quando ela puder ler. Talvez para ninguém.</p>
+
+    <p>Amanhã os registros voltam ao normal.</p>
+  </div>
+
+  <div class="rule">
+    <div class="rule-line"></div>
+    <span class="rule-glyph">✦</span>
+    <div class="rule-line"></div>
+  </div>
+
+  <img class="sketch" src="imagens/corvo.png" alt="O corvo mensageiro">
+  <p class="sketch-caption">o corvo — visto toda noite. nunca confiado.</p>
+
+  <img class="sketch" src="imagens/ana.png" alt="Ana">
+  <p class="sketch-caption">Ana &nbsp;·&nbsp; nove anos &nbsp;·&nbsp; de memória</p>
+
+  <div class="signature">
+    <span class="signature-name">E.V.</span>
+    <span class="signature-note">Vallaki &nbsp;·&nbsp; Dia Um do Festival</span>
+  </div>
+
+  <footer class="footer">
+    <p class="footer-text">A Maldição de Strahd &nbsp;·&nbsp; Campanha de Daggerheart</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
